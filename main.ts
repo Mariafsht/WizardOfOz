@@ -41,3 +41,5 @@ let mySprite = sprites.create(img`
     ........................................
     .......................................d
     `, SpriteKind.Player)
+controller.moveSprite(mySprite)
+tiles.setCurrentTilemap(tilemap`level2`)
