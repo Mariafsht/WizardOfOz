@@ -1,7 +1,7 @@
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     game.gameOver(true)
 })
-tiles.setCurrentTilemap(tilemap`level1`)
+tiles.setCurrentTilemap(tilemap`level2`)
 let mySprite = sprites.create(img`
     ................eeeeeeee................
     ...............eeeeeeeeee...............
@@ -45,7 +45,6 @@ let mySprite = sprites.create(img`
     .......................................d
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
-tiles.setCurrentTilemap(tilemap`level2`)
 tiles.placeOnRandomTile(mySprite, sprites.castle.rock0)
 scene.cameraFollowSprite(mySprite)
-info.startCountdown(10)
+info.startCountdown(25)
