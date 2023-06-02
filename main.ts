@@ -45,6 +45,6 @@ let mySprite = sprites.create(img`
     .......................................d
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
-tiles.placeOnRandomTile(mySprite, sprites.castle.rock0)
+tiles.placeOnRandomTile(mySprite, sprites.dungeon.stairSouth)
 scene.cameraFollowSprite(mySprite)
 info.startCountdown(25)
