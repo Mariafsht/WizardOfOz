@@ -124,15 +124,33 @@ function startLevel () {
         `)
     count = 0
     for (let index = 0; index <= 10 + level; index++) {
-    	
+        mySprite = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Enemy)
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     game.gameOver(true)
 })
 let count = 0
+let mySprite: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     ................eeeeeeee................
     ...............eeeeeeeeee...............
     ..............eeeeeeeeeeee..............
@@ -177,4 +195,4 @@ let mySprite = sprites.create(img`
 controller.moveSprite(mySprite)
 tiles.placeOnRandomTile(mySprite, sprites.dungeon.stairSouth)
 scene.cameraFollowSprite(mySprite)
-info.startCountdown(25)
+info.startCountdown(20)
