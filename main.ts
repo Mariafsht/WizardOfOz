@@ -145,7 +145,7 @@ function startLevel () {
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
-    game.gameOver(true)
+    startLevel()
 })
 let count = 0
 let mySprite: Sprite = null
