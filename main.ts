@@ -1,9 +1,22 @@
-function startlevel () {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    count += 1
+    info.changeScoreBy(1)
+    sprites.destroy(otherSprite)
+    otherSprite.startEffect(effects.smiles, 200)
+    if (count > 10 + level) {
+        level += 1
+        music.play(music.melodyPlayable(music.magicWand), music.PlaybackMode.InBackground)
+        startLevel()
+    } else {
+        music.play(music.melodyPlayable(music.powerUp), music.PlaybackMode.UntilDone)
+    }
+})
+function startLevel () {
     tiles.setCurrentTilemap(tilemap`level4`)
     mySprite.setBounceOnWall(true)
     count = 0
     for (let index = 0; index <= 10 + level; index++) {
-        mySprite2 = sprites.create(img`
+        food1 = sprites.create(img`
             . . . . . . f f f . . . . . . . 
             . . . . . f f f f f f . . . . . 
             . . . f f f f f f f f f . . . . 
@@ -20,30 +33,17 @@ function startlevel () {
             . 7 7 f f f f f f f f . 7 e . . 
             . . . f f f f f f f f f . e . . 
             . . f f f f f f f f f f f . . . 
-            `, SpriteKind.Enemy)
+            `, SpriteKind.Food)
+        food1.setPosition(randint(20, 140), randint(20, 100))
     }
-    mySprite2.setPosition(randint(20, 140), randint(20, 100))
-    mySprite.sayText("Level" + level, 1000, false)
-    info.startCountdown(15)
+    mySprite.sayText("Level" + level, 1000, true)
+    info.startCountdown(30)
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    let othersprite: Sprite = null
-    count += 1
-    info.changeScoreBy(1)
-    othersprite.startEffect(effects.fountain, 200)
-    if (count > 10 + level) {
-        level += 1
-        music.play(music.melodyPlayable(music.magicWand), music.PlaybackMode.InBackground)
-        startlevel()
-    } else {
-        music.play(music.melodyPlayable(music.powerUp), music.PlaybackMode.UntilDone)
-    }
-})
-let mySprite2: Sprite = null
+let food1: Sprite = null
 let count = 0
 let mySprite: Sprite = null
 let level = 0
-game.splash("Hurry up!", "Escape from the Wicked Witch!")
+game.splash("Hurry up!", "Kill the Wicked Witch of the West!")
 level = 1
 mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -64,4 +64,4 @@ mySprite = sprites.create(img`
     . . . . 2 2 . . . 2 2 . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite, 70, 70)
-startlevel()
+startLevel()
